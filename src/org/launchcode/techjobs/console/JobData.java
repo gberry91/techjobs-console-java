@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -35,7 +36,8 @@ public class JobData {
 
         ArrayList<String> values = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for (HashMap<String, String>
+                row : allJobs) {
             String aValue = row.get(field);
 
             if (!values.contains(aValue)) {
@@ -57,12 +59,12 @@ public class JobData {
     /**
      * Returns results of search the jobs data by key/value, using
      * inclusion of the search term.
-     *
+     * <p>
      * For example, searching for employer "Enterprise" will include results
      * with "Enterprise Holdings, Inc".
      *
-     * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
+     * @param column Column that should be searched.
+     * @param value  Value of teh field to search for
      * @return List of all jobs matching the criteria
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
@@ -125,4 +127,30 @@ public class JobData {
         }
     }
 
+    public static ArrayList<HashMap<String, String>> findByValue(String column, String value) {
+        loadData();
+        // create empty arraylist
+        // for each iteration
+        // compare values
+        // if values are the same
+        // add value to new array list
+        // return arraylist
+
+        ArrayList<HashMap<String, String>> listOfValues = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            for (Map.Entry<String, String> entry : row.entrySet()) {
+                // if entry.getValue() contains value
+                if (entry.getValue().toLowerCase().contains(value.toLowerCase())) {
+                    //    add to listOfValues
+                    listOfValues.add(row);
+                }
+
+            }
+        }
+        //    return listOfValues
+        return listOfValues;
+
+    }
 }
+
